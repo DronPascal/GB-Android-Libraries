@@ -20,8 +20,19 @@ class MainActivity : AppCompatActivity(), MainView {
         _vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb.root)
 
+        initView()
+    }
+
+    private fun initView() {
         val listener = View.OnClickListener {
-            presenter.counterClick(it.id)
+            presenter.counterClick(
+                when (it.id) {
+                    R.id.btn_counter1 -> 0
+                    R.id.btn_counter2 -> 1
+                    R.id.btn_counter3 -> 2
+                    else -> throw IllegalStateException("Такого индекса нет")
+                }
+            )
         }
 
         vb.btnCounter1.setOnClickListener(listener)
