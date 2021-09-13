@@ -2,8 +2,9 @@ package com.example.gb_libs_lesson1.presentation
 
 import com.example.gb_libs_lesson1.model.GithubUser
 import com.example.gb_libs_lesson1.model.GithubUsersRepo
+import com.example.gb_libs_lesson1.screens.AndroidScreens
 import com.example.gb_libs_lesson1.view.UserItemView
-import com.example.gb_libs_lesson1.view.ui.UsersView
+import com.example.gb_libs_lesson1.view.ui.users.UsersView
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 
@@ -35,8 +36,13 @@ class UsersPresenter(
         loadData()
 
         usersListPresenter.itemClickListener = { itemView ->
-            // todo
+            val githubUser = usersListPresenter.users[itemView.pos]
+            navigateToUserDetail(argument = githubUser)
         }
+    }
+
+    private fun navigateToUserDetail(argument: GithubUser) {
+        router.navigateTo(AndroidScreens.UserDetailScreen(argument))
     }
 
     fun loadData() {
