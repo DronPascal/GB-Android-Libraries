@@ -1,5 +1,6 @@
-package com.example.gb_libs_lesson1.view.ui
+package com.example.gb_libs_lesson1.view.ui.users
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +18,20 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
     private var vb: FragmentUsersBinding? = null
 
-    private val presenter by moxyPresenter { UsersPresenter(GithubUsersRepo(), App.instance.router) }
+    private val presenter by moxyPresenter {
+        UsersPresenter(
+            GithubUsersRepo(),
+            App.instance.router
+        )
+    }
 
     private val adapter by lazy { UsersRVAdapter(presenter.usersListPresenter) }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return FragmentUsersBinding.inflate(inflater, container, false).also {
             vb = it
         }.root
@@ -32,6 +42,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         vb?.rvUsers?.adapter = adapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun updateList() {
         adapter.notifyDataSetChanged()
     }
