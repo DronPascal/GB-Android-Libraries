@@ -7,9 +7,7 @@ import moxy.MvpPresenter
 /**
  * Created by dronpascal on 20.09.2021.
  */
-class MainPresenter : MvpPresenter<MainView>() {
-
-    lateinit var storageInteractors: StorageInteractors
+class MainPresenter(private val storageInteractors: StorageInteractors) : MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -17,21 +15,30 @@ class MainPresenter : MvpPresenter<MainView>() {
         cacheFileFromAssets()
     }
 
-    private fun cacheFileFromAssets() {
+    fun cacheFileFromAssets() {
         storageInteractors
             .cacheFileFromAssets
             .execute(FileName.flowerFile)
             .subscribe(
                 {
-                    viewState.showToast("File converted successfully!")
+                    viewState.showToast("File initialization done successfully!")
                 }, { error ->
-                    viewState.showError(error.localizedMessage)
+                    viewState.showToast(error.localizedMessage)
                 }
             )
 
     }
 
-    private fun onConvertAndSaveFile(fileName: String) {
+    fun onConvertAndSaveFile(fileName: String) {
         storageInteractors
+            .convertFileToPngAndSave
+            .execute(fileName)
+            .subscribe(
+                {
+                    viewState.showToast("File converted successfully!")
+                }, { error ->
+                    viewState.showToast(error.localizedMessage)
+                }
+            )
     }
 }
