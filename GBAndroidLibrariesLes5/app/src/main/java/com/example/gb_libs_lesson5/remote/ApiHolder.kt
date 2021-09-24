@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiHolder {
 
-    val apiService: GithubUsersService by lazy {
+    val apiService: GithubService by lazy {
         val gson = GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
             .create()
@@ -17,6 +17,6 @@ object ApiHolder {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(GithubUsersService::class.java)
+            .create(GithubService::class.java)
     }
 }
