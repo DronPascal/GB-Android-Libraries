@@ -13,7 +13,13 @@ class UsersRVAdapter(
 ) : RecyclerView.Adapter<UsersRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)).apply {
+        return ViewHolder(
+            ItemUserBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        ).apply {
             itemView.setOnClickListener { presenter.itemClickListener?.invoke(this) }
         }
     }
@@ -24,7 +30,8 @@ class UsersRVAdapter(
         presenter.bindView(holder.apply { pos = position })
     }
 
-    inner class ViewHolder(private val vb: ItemUserBinding) : RecyclerView.ViewHolder(vb.root), UserItemView {
+    inner class ViewHolder(private val vb: ItemUserBinding) : RecyclerView.ViewHolder(vb.root),
+        UserItemView {
 
         override var pos: Int = -1
 

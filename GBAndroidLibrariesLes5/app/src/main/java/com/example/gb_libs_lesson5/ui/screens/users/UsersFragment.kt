@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gb_libs_lesson5.App
-import com.example.gb_libs_lesson5.data.GithubUsersRepo
+import com.example.gb_libs_lesson5.data.GithubUsersRepository
 import com.example.gb_libs_lesson5.databinding.FragmentUsersBinding
 import com.example.gb_libs_lesson5.navigation.BackButtonListener
 import com.example.gb_libs_lesson5.ui.images.GlideImageLoader
@@ -18,7 +18,12 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
     private var vb: FragmentUsersBinding? = null
 
-    private val presenter by moxyPresenter { UsersPresenter(GithubUsersRepo(), App.instance.router) }
+    private val presenter by moxyPresenter {
+        UsersPresenter(
+            GithubUsersRepository(),
+            App.instance.router
+        )
+    }
 
     private val adapter by lazy {
         UsersRVAdapter(
@@ -27,7 +32,11 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         )
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return FragmentUsersBinding.inflate(inflater, container, false).also {
             vb = it
         }.root

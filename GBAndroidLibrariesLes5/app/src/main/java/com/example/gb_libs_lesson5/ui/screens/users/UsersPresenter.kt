@@ -1,8 +1,9 @@
 package com.example.gb_libs_lesson5.ui.screens.users
 
 import android.util.Log
-import com.example.gb_libs_lesson5.data.GithubUser
-import com.example.gb_libs_lesson5.data.GithubUsersRepo
+import com.example.gb_libs_lesson5.data.GithubUsersRepository
+import com.example.gb_libs_lesson5.data.model.GithubUserItem
+import com.example.gb_libs_lesson5.navigation.AndroidScreens
 import com.example.gb_libs_lesson5.ui.items.IUserListPresenter
 import com.example.gb_libs_lesson5.ui.screens.users.adapter.UserItemView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -11,13 +12,13 @@ import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 
 class UsersPresenter(
-    private val usersRepo: GithubUsersRepo,
+    private val usersRepository: GithubUsersRepository,
     private val router: Router,
 ) : MvpPresenter<UsersView>() {
 
     class UsersListPresenter : IUserListPresenter {
 
-        val users = mutableListOf<GithubUser>()
+        val users = mutableListOf<GithubUserItem>()
 
         override var itemClickListener: ((UserItemView) -> Unit)? = null
 
@@ -39,12 +40,17 @@ class UsersPresenter(
         loadData()
 
         usersListPresenter.itemClickListener = { itemView ->
-            // todo
+            val githubUser = usersListPresenter.users[itemView.pos]
+            githubUser.reposUrl?.let { navigateToUserRepos(url = it) }
         }
     }
 
+    private fun navigateToUserRepos(url: String) {
+        router.navigateTo(AndroidScreens.UserReposScreen(url))
+    }
+
     private fun loadData() {
-        usersRepo.getUsers()
+        usersRepository.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ users ->

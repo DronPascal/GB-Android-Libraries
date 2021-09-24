@@ -1,4 +1,4 @@
-package com.example.gb_libs_lesson5.data
+package com.example.gb_libs_lesson5.data.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class GithubUser(
+data class GithubUserItem(
     @Expose
     val login: String? = null,
 
@@ -16,4 +16,8 @@ data class GithubUser(
     @Expose
     @SerializedName("avatar_url")
     val avatarUrl: String? = null,
+
+    @Expose
+    @SerializedName("repos_url")
+    val reposUrl: String? = null
 ) : Parcelable
