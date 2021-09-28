@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gb_libs_lesson6.App
 import com.example.gb_libs_lesson6.databinding.FragmentUsersBinding
 import com.example.gb_libs_lesson6.domain.interactors.GithubInteractors
-import com.example.gb_libs_lesson6.navigation.BackButtonListener
+import com.example.gb_libs_lesson6.presentation.navigation.BackButtonListener
 import com.example.gb_libs_lesson6.presentation.images.GlideImageLoader
 import com.example.gb_libs_lesson6.presentation.screens.users.adapter.UsersRVAdapter
 import com.example.gb_libs_lesson6.utils.AndroidNetworkStatus

@@ -1,4 +1,4 @@
-package com.example.gb_libs_lesson6.navigation
+package com.example.gb_libs_lesson6.presentation.navigation
 
 import com.example.gb_libs_lesson6.presentation.screens.users.UsersFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
