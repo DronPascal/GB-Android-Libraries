@@ -1,12 +1,14 @@
-package com.example.gb_libs_lesson6.data.db
+package com.example.gb_libs_lesson6.data.cache.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.gb_libs_lesson6.data.cache.room.model.RoomGithubRepo
+import com.example.gb_libs_lesson6.data.cache.room.model.RoomGithubUser
 
 @Database(
-    entities = [RoomGithubUser::class, RoomGithubRepository::class],
+    entities = [RoomGithubUser::class, RoomGithubRepo::class],
     version = 1
 )
 abstract class GithubDatabase : RoomDatabase() {
