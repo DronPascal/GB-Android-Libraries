@@ -1,4 +1,4 @@
-package com.example.gb_libs_lesson6.ui.activity
+package com.example.gb_libs_lesson6.presentation.activity
 
 import com.example.gb_libs_lesson6.navigation.AndroidScreens
 import moxy.MvpPresenter

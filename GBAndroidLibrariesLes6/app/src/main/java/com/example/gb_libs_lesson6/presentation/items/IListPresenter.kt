@@ -1,6 +1,6 @@
-package com.example.gb_libs_lesson6.ui.items
+package com.example.gb_libs_lesson6.presentation.items
 
-import com.example.gb_libs_lesson6.ui.screens.users.adapter.UserItemView
+import com.example.gb_libs_lesson6.presentation.screens.users.adapter.UserItemView
 
 interface IListPresenter<V : IItemView> {
 

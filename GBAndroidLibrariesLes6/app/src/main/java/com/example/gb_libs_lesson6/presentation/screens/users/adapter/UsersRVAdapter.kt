@@ -1,11 +1,11 @@
-package com.example.gb_libs_lesson6.ui.screens.users.adapter
+package com.example.gb_libs_lesson6.presentation.screens.users.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gb_libs_lesson6.databinding.ItemUserBinding
-import com.example.gb_libs_lesson6.ui.images.GlideImageLoader
-import com.example.gb_libs_lesson6.ui.items.IUserListPresenter
+import com.example.gb_libs_lesson6.presentation.images.GlideImageLoader
+import com.example.gb_libs_lesson6.presentation.items.IUserListPresenter
 
 class UsersRVAdapter(
     private val presenter: IUserListPresenter,
