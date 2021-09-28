@@ -1,4 +1,4 @@
-package com.example.gb_libs_lesson6.remote
+package com.example.gb_libs_lesson6.data.remote
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiHolder {
 
-    val apiService: GithubUsersService by lazy {
+    val githubApiService: GithubService by lazy {
         val gson = GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
             .create()
@@ -17,6 +17,6 @@ object ApiHolder {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(GithubUsersService::class.java)
+            .create(GithubService::class.java)
     }
 }
