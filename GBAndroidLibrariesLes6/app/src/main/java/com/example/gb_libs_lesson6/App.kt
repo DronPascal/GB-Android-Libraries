@@ -1,7 +1,7 @@
 package com.example.gb_libs_lesson6
 
 import android.app.Application
-import com.example.gb_libs_lesson6.data.db.GithubDatabase
+import com.example.gb_libs_lesson6.data.cache.room.GithubDatabase
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
 
