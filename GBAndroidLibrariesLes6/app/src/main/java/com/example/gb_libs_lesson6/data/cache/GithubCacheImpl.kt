@@ -32,7 +32,9 @@ class GithubCacheImpl(private val db: GithubDatabase) : GithubCache {
     override fun insertRepo(repos: List<GithubRepo>, owner: GithubUser) {
         val roomUser = db.userDao.getByLogin(owner.login)
             ?: throw Exception("User not cached.")
-        db.repoDao.insert(repos.toRoomGithubRepos(roomUser.login))
+        val roomRepos = repos.toRoomGithubRepos(roomUser.id)
+        println("roomRepos $roomRepos")
+        db.repoDao.insert(roomRepos)
     }
 
 }

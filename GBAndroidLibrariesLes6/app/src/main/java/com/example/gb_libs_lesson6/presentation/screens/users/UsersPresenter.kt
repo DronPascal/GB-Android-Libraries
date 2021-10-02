@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.gb_libs_lesson6.domain.interactors.GithubInteractors
 import com.example.gb_libs_lesson6.domain.model.GithubUser
 import com.example.gb_libs_lesson6.presentation.items.IUserListPresenter
+import com.example.gb_libs_lesson6.presentation.navigation.AndroidScreens
 import com.example.gb_libs_lesson6.presentation.screens.users.adapter.UserItemView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -39,32 +40,22 @@ class UsersPresenter(
         loadData()
 
         usersListPresenter.itemClickListener = { itemView ->
-            // todo
+            val user = usersListPresenter.users[itemView.pos]
+            navigateToUserRepos(user)
         }
+    }
+
+    private fun navigateToUserRepos(user: GithubUser) {
+        router.navigateTo(AndroidScreens.UserReposScreen(user))
     }
 
     private fun loadData() {
         githubInteractors.getUsers.execute()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .map {
-                loadRepos(it.first())
-                it
-            }
             .subscribe({ users ->
                 usersListPresenter.users.addAll(users)
                 viewState.updateList()
-            }, {
-                Log.e("UsersPresenter", "Ошибка получения пользователей", it)
-            })
-    }
-
-    private fun loadRepos(user: GithubUser) {
-        githubInteractors.getUserRepos.execute(user)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ repos ->
-                Log.d("UsersPresenter", "${repos.first()}")
             }, {
                 Log.e("UsersPresenter", "Ошибка получения пользователей", it)
             })

@@ -19,7 +19,9 @@ class GetUserRepos(
             if (isOnline) {
                 service.getUserRepos(user.reposUrl).flatMap { apiRepos ->
                     Single.fromCallable {
+                        println(apiRepos + "api repos")
                         val repos = apiRepos.toGithubRepos()
+                        println(repos + "repos")
                         cache.insertRepo(repos = repos, owner = user)
                         repos
                     }
