@@ -14,7 +14,7 @@ import com.example.gb_libs_lesson6.data.cache.room.model.RoomGithubUser
 abstract class GithubDatabase : RoomDatabase() {
 
     abstract val userDao: UserDao
-    abstract val repositoryDao: RepositoryDao
+    abstract val repoDao: RepoDao
 
     companion object {
 
