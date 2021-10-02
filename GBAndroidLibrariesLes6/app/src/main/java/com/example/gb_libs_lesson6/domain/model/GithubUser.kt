@@ -30,3 +30,7 @@ fun GithubUser.toRoomGithubUser(): RoomGithubUser {
         reposUrl = reposUrl
     )
 }
+
+fun List<GithubUser>.toRoomGithubUsers(): List<RoomGithubUser> {
+    return map { it.toRoomGithubUser() }
+}

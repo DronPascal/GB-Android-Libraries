@@ -1,5 +1,6 @@
 package com.example.gb_libs_lesson6.domain.interactors
 
+import com.example.gb_libs_lesson6.data.cache.GithubCache
 import com.example.gb_libs_lesson6.data.cache.room.GithubDatabase
 import com.example.gb_libs_lesson6.data.remote.ApiHolder
 import com.example.gb_libs_lesson6.utils.AndroidNetworkStatus
@@ -11,7 +12,7 @@ data class GithubInteractors(
 ) {
     companion object Factory {
         fun build(networkStatus: INetworkStatus): GithubInteractors {
-            val githubCache = GithubDatabase.getInstance()
+            val githubCache = GithubCache.build()
             val githubService = ApiHolder.githubApiService
 
             return GithubInteractors(

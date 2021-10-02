@@ -1,6 +1,8 @@
 package com.example.gb_libs_lesson6.data.remote.model
 
 import android.os.Parcelable
+import com.example.gb_libs_lesson6.data.cache.room.model.RoomGithubUser
+import com.example.gb_libs_lesson6.data.cache.room.model.toGithubUser
 import com.example.gb_libs_lesson6.domain.model.GithubUser
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -30,4 +32,8 @@ fun GithubUserDto.toGithubUser(): GithubUser {
         avatarUrl = avatarUrl.orEmpty(),
         reposUrl = reposUrl.orEmpty()
     )
+}
+
+fun List<GithubUserDto>.toGithubUsers(): List<GithubUser> {
+    return map { it.toGithubUser() }
 }

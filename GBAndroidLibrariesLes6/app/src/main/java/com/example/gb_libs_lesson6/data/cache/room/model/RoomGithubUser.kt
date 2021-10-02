@@ -2,7 +2,6 @@ package com.example.gb_libs_lesson6.data.cache.room.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.gb_libs_lesson6.data.remote.model.GithubUserDto
 import com.example.gb_libs_lesson6.domain.model.GithubUser
 
 @Entity
@@ -20,4 +19,8 @@ fun RoomGithubUser.toGithubUser(): GithubUser {
         avatarUrl = avatarUrl,
         reposUrl = reposUrl
     )
+}
+
+fun List<RoomGithubUser>.toGithubUsers(): List<GithubUser> {
+    return map { it.toGithubUser() }
 }
