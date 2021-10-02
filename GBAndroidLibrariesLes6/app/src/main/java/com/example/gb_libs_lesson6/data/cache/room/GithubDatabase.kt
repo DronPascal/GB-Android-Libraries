@@ -22,7 +22,8 @@ abstract class GithubDatabase : RoomDatabase() {
 
         private var instance: GithubDatabase? = null
 
-        fun getInstance() = instance ?: throw IllegalStateException("База данных не инициализирована")
+        fun getInstance() =
+            instance ?: throw IllegalStateException("База данных не инициализирована")
 
         fun create(context: Context) {
             if (instance == null) {

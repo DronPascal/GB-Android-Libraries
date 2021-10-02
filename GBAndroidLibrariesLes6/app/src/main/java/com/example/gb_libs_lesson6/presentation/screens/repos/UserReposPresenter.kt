@@ -56,7 +56,6 @@ class UserReposPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ repos ->
-                    println(repos)
                     userRepoListPresenter.repos.addAll(repos)
                     viewState.updateList()
                 }, {

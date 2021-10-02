@@ -2,7 +2,6 @@ package com.example.gb_libs_lesson6.domain.interactors
 
 import com.example.gb_libs_lesson6.data.cache.GithubCache
 import com.example.gb_libs_lesson6.data.remote.GithubService
-import com.example.gb_libs_lesson6.data.remote.model.toGithubRepo
 import com.example.gb_libs_lesson6.data.remote.model.toGithubRepos
 import com.example.gb_libs_lesson6.domain.model.GithubRepo
 import com.example.gb_libs_lesson6.domain.model.GithubUser
@@ -19,9 +18,7 @@ class GetUserRepos(
             if (isOnline) {
                 service.getUserRepos(user.reposUrl).flatMap { apiRepos ->
                     Single.fromCallable {
-                        println(apiRepos + "api repos")
                         val repos = apiRepos.toGithubRepos()
-                        println(repos + "repos")
                         cache.insertRepo(repos = repos, owner = user)
                         repos
                     }

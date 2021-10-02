@@ -18,19 +18,21 @@ class AndroidNetworkStatus(context: Context) : INetworkStatus {
 
         val connectivityManager = context.getSystemService<ConnectivityManager>()
         val request = NetworkRequest.Builder().build()
-        connectivityManager?.registerNetworkCallback(request, object : ConnectivityManager.NetworkCallback() {
-            override fun onAvailable(network: Network) {
-                statusSubject.onNext(true)
-            }
+        connectivityManager?.registerNetworkCallback(
+            request,
+            object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    statusSubject.onNext(true)
+                }
 
-            override fun onUnavailable() {
-                statusSubject.onNext(false)
-            }
+                override fun onUnavailable() {
+                    statusSubject.onNext(false)
+                }
 
-            override fun onLosing(network: Network, maxMsToLive: Int) {
-                statusSubject.onNext(false)
-            }
-        })
+                override fun onLosing(network: Network, maxMsToLive: Int) {
+                    statusSubject.onNext(false)
+                }
+            })
     }
 
     override fun isOnline(): Observable<Boolean> {
