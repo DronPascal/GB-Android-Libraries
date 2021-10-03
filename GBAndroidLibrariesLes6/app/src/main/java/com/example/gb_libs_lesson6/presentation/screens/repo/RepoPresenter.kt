@@ -2,10 +2,12 @@ package com.example.gb_libs_lesson6.presentation.screens.repo
 
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
-class RepoPresenter(
-    private val router: Router,
-) : MvpPresenter<RepoView>() {
+class RepoPresenter : MvpPresenter<RepoView>() {
+
+    @Inject
+    lateinit var router: Router
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

@@ -1,7 +1,7 @@
 package com.example.gb_libs_lesson6.presentation.screens.repos
 
 import android.util.Log
-import com.example.gb_libs_lesson6.domain.interactors.GithubInteractors
+import com.example.gb_libs_lesson6.domain.interactors.GetUserRepos
 import com.example.gb_libs_lesson6.domain.model.GithubRepo
 import com.example.gb_libs_lesson6.domain.model.GithubUser
 import com.example.gb_libs_lesson6.presentation.items.IUserRepoListPresenter
@@ -11,11 +11,15 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
-class UserReposPresenter(
-    private val githubInteractors: GithubInteractors,
-    private val router: Router,
-) : MvpPresenter<UserReposView>() {
+class UserReposPresenter : MvpPresenter<UserReposView>() {
+
+    @Inject
+    lateinit var getUserRepos: GetUserRepos
+
+    @Inject
+    lateinit var router: Router
 
     class UserRepoListPresenter : IUserRepoListPresenter {
 
@@ -52,7 +56,7 @@ class UserReposPresenter(
 
     private fun loadData() {
         user?.let {
-            githubInteractors.getUserRepos.execute(it)
+            getUserRepos.execute(it)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ repos ->

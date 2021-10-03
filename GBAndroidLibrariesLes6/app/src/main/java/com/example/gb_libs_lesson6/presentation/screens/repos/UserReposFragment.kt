@@ -8,11 +8,9 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gb_libs_lesson6.App
 import com.example.gb_libs_lesson6.databinding.FragmentUserReposBinding
-import com.example.gb_libs_lesson6.domain.interactors.GithubInteractors
 import com.example.gb_libs_lesson6.domain.model.GithubUser
 import com.example.gb_libs_lesson6.presentation.navigation.BackButtonListener
 import com.example.gb_libs_lesson6.presentation.screens.repos.adapter.UserRepoRVAdapter
-import com.example.gb_libs_lesson6.utils.AndroidNetworkStatus
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -21,10 +19,9 @@ class UserReposFragment : MvpAppCompatFragment(), UserReposView, BackButtonListe
     private var vb: FragmentUserReposBinding? = null
 
     private val presenter by moxyPresenter {
-        UserReposPresenter(
-            GithubInteractors.build(AndroidNetworkStatus(requireContext())),
-            App.instance.router
-        )
+        UserReposPresenter().apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     private val adapter by lazy {

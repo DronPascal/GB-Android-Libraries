@@ -1,7 +1,7 @@
 package com.example.gb_libs_lesson6.presentation.screens.users
 
 import android.util.Log
-import com.example.gb_libs_lesson6.domain.interactors.GithubInteractors
+import com.example.gb_libs_lesson6.domain.interactors.GetUsers
 import com.example.gb_libs_lesson6.domain.model.GithubUser
 import com.example.gb_libs_lesson6.presentation.items.IUserListPresenter
 import com.example.gb_libs_lesson6.presentation.navigation.AndroidScreens
@@ -10,11 +10,15 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
-class UsersPresenter(
-    private val githubInteractors: GithubInteractors,
-    private val router: Router,
-) : MvpPresenter<UsersView>() {
+class UsersPresenter : MvpPresenter<UsersView>() {
+
+    @Inject
+    lateinit var getUsers: GetUsers
+
+    @Inject
+    lateinit var router: Router
 
     class UsersListPresenter : IUserListPresenter {
 
@@ -50,7 +54,7 @@ class UsersPresenter(
     }
 
     private fun loadData() {
-        githubInteractors.getUsers.execute()
+        getUsers.execute()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ users ->
