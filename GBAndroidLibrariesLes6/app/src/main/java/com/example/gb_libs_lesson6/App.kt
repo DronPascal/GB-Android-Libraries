@@ -1,23 +1,21 @@
 package com.example.gb_libs_lesson6
 
 import android.app.Application
-import com.example.gb_libs_lesson6.data.cache.room.GithubDatabase
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Router
+import com.example.gb_libs_lesson6.di.component.AppComponent
+import com.example.gb_libs_lesson6.di.component.DaggerAppComponent
+import com.example.gb_libs_lesson6.di.module.AppModule
 
 class App : Application() {
 
-    private val cicerone: Cicerone<Router> by lazy {
-        Cicerone.create()
-    }
-    val navigationHolder get() = cicerone.navigatorHolder
-    val router get() = cicerone.router
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
         instance = this
 
-        GithubDatabase.create(this)
+        appComponent = DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
     }
 
     companion object {
