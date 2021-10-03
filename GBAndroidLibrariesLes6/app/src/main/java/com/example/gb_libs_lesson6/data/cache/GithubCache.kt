@@ -21,8 +21,8 @@ interface GithubCache {
     fun insertRepo(repos: List<GithubRepo>, owner: GithubUser)
 
     companion object Factory {
-        fun build(): GithubCacheImpl {
-            return GithubCacheImpl(GithubDatabase.getInstance())
+        fun build(githubDatabase: GithubDatabase): GithubCacheImpl {
+            return GithubCacheImpl(githubDatabase)
         }
     }
 }
