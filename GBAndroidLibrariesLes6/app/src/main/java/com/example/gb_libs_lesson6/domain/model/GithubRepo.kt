@@ -21,11 +21,15 @@ fun GithubRepo.toGithubRepoDto(): GithubRepoDto {
     )
 }
 
-fun GithubRepo.toRoomGithubRepo(userId: String): RoomGithubRepo {
+fun GithubRepo.toRoomGithubRepos(userId: String): RoomGithubRepo {
     return RoomGithubRepo(
         id = id,
         name = name,
         forksCount = forksCount,
         userId = userId
     )
+}
+
+fun List<GithubRepo>.toRoomGithubRepos(userId: String): List<RoomGithubRepo> {
+    return map { it.toRoomGithubRepos(userId) }
 }

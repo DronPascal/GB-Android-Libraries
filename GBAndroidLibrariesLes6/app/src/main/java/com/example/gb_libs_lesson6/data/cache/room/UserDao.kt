@@ -1,11 +1,6 @@
 package com.example.gb_libs_lesson6.data.cache.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.gb_libs_lesson6.data.cache.room.model.RoomGithubUser
 
 @Dao
@@ -40,7 +35,7 @@ interface UserDao {
 
     @Query("SELECT * FROM RoomGithubUser")
     fun getAll(): List<RoomGithubUser>
-    
+
     @Query("SELECT * FROM RoomGithubUser WHERE login = :login LIMIT 1")
     fun getByLogin(login: String): RoomGithubUser?
 }

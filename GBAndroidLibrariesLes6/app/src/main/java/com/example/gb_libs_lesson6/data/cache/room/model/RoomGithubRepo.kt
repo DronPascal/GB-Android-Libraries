@@ -27,3 +27,7 @@ fun RoomGithubRepo.toGithubRepo(): GithubRepo {
         forksCount = forksCount
     )
 }
+
+fun List<RoomGithubRepo>.toGithubRepos(): List<GithubRepo> {
+    return map { it.toGithubRepo() }
+}

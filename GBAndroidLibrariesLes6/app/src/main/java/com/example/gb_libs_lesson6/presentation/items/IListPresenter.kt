@@ -1,5 +1,6 @@
 package com.example.gb_libs_lesson6.presentation.items
 
+import com.example.gb_libs_lesson6.presentation.screens.repos.adapter.UserRepoItemView
 import com.example.gb_libs_lesson6.presentation.screens.users.adapter.UserItemView
 
 interface IListPresenter<V : IItemView> {
@@ -10,3 +11,5 @@ interface IListPresenter<V : IItemView> {
 }
 
 interface IUserListPresenter : IListPresenter<UserItemView>
+
+interface IUserRepoListPresenter : IListPresenter<UserRepoItemView>

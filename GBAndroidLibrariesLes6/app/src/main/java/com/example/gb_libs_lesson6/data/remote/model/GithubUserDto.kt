@@ -31,3 +31,7 @@ fun GithubUserDto.toGithubUser(): GithubUser {
         reposUrl = reposUrl.orEmpty()
     )
 }
+
+fun List<GithubUserDto>.toGithubUsers(): List<GithubUser> {
+    return map { it.toGithubUser() }
+}
