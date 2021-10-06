@@ -9,14 +9,14 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
  */
 object AppScreens {
 
-//    class CategoriesScreen : SupportAppScreen() {
-//        override fun getFragment() = CategoriesFragment()
-//    }
-//
-//    class CharactersScreen() : SupportAppScreen() {
-//        override fun getFragment() = CharactersFragment()
-//    }
-//
+    class CategoriesScreen : SupportAppScreen() {
+        override fun getFragment() = CategoriesFragment()
+    }
+
+    class CharactersScreen : SupportAppScreen() {
+        override fun getFragment() = CharactersFragment()
+    }
+
 //    class CharacterDetailScreen(private val character: Character) : SupportAppScreen() {
 //        override fun getFragment() = CharacterDetailFragment.newInstance(character)
 //    }

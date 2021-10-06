@@ -29,4 +29,5 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(CategoriesPresenter: CategoriesPresenter)
+    fun inject(CategoriesPresenter: CharactersPresenter)
 }
