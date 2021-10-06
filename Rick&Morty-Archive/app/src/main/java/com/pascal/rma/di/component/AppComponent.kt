@@ -27,5 +27,6 @@ interface AppComponent {
     fun presenter(): MainPresenter
 
     fun inject(mainActivity: MainActivity)
-    
+
+    fun inject(CategoriesPresenter: CategoriesPresenter)
 }
