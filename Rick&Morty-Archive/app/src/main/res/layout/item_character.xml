@@ -34,38 +34,27 @@
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@id/img_avatar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_chainStyle="spread_inside"
             tools:text="Dr. Wong" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/img_alive_status"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/character_status_indicator_size"
-            android:layout_marginStart="@dimen/small_margin"
-            android:src="@android:color/holo_green_dark"
-            app:layout_constraintBottom_toBottomOf="@id/tv_status_and_race"
-            app:layout_constraintDimensionRatio="H,1:1"
-            app:layout_constraintStart_toEndOf="@id/img_avatar"
-            app:layout_constraintTop_toTopOf="@id/tv_status_and_race"
-            app:shapeAppearanceOverlay="@style/circular" />
 
         <TextView
             android:id="@+id/tv_status_and_race"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/tiny_margin"
+            android:layout_marginStart="@dimen/small_margin"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
             app:layout_constraintBottom_toTopOf="@+id/tv_location_title"
-            app:layout_constraintStart_toEndOf="@id/img_alive_status"
+            app:layout_constraintStart_toEndOf="@id/img_avatar"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            tools:text="Alive - Human" />
+            tools:text="🟢 Alive - Human" />
 
         <TextView
             android:id="@+id/tv_location_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginTop="@dimen/tiny_margin"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:layout_constraintBottom_toTopOf="@+id/tv_location"
             app:layout_constraintStart_toEndOf="@id/img_avatar"
@@ -91,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginTop="@dimen/tiny_margin"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:layout_constraintBottom_toTopOf="@+id/tv_episode"
             app:layout_constraintStart_toEndOf="@id/img_avatar"
