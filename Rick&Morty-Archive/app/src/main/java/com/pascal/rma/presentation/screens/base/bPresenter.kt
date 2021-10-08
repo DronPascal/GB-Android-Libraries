@@ -1,9 +1,5 @@
 package com.pascal.rma.presentation.screens.base
 
-import moxy.MvpPresenter
-import ru.terrakok.cicerone.Router
-import javax.inject.Inject
-
 /**
  * Created by dronpascal on 05.10.2021.
  */

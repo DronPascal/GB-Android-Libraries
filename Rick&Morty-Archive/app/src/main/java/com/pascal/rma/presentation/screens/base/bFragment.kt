@@ -1,14 +1,5 @@
 package com.pascal.rma.presentation.screens.base
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.pascal.rma.databinding.FragmentCategoriesBinding
-import com.pascal.rma.presentation.navigation.BackButtonListener
-import moxy.MvpAppCompatFragment
-import moxy.ktx.moxyPresenter
-
 /**
  * Created by dronpascal on 05.10.2021.
  */

@@ -3,7 +3,8 @@ package com.pascal.rma.di.module
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.pascal.rma.data.remote.retrofit.*
+import com.pascal.rma.data.remote.retrofit.ApiHolder
+import com.pascal.rma.data.remote.retrofit.IApiHolder
 import com.pascal.rma.data.remote.retrofit.character.CharacterApiService
 import com.pascal.rma.data.remote.retrofit.episode.EpisodeApiService
 import com.pascal.rma.data.remote.retrofit.location.LocationApiService

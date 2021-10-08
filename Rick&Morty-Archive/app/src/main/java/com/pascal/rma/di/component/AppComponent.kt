@@ -6,7 +6,6 @@ import com.pascal.rma.di.module.CiceroneModule
 import com.pascal.rma.presentation.activity.MainActivity
 import com.pascal.rma.presentation.activity.MainPresenter
 import com.pascal.rma.presentation.screens.categories.CategoriesPresenter
-import com.pascal.rma.presentation.screens.character.list.CharactersFragment
 import com.pascal.rma.presentation.screens.character.list.CharactersPresenter
 import dagger.Component
 import javax.inject.Singleton

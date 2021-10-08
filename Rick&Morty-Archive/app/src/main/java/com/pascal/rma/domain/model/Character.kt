@@ -1,8 +1,5 @@
 package com.pascal.rma.domain.model
 
-import com.pascal.rma.data.remote.retrofit.character.model.LocationDto
-import com.pascal.rma.data.remote.retrofit.character.model.OriginDto
-
 /**
  * Created by dronpascal on 05.10.2021.
  */
