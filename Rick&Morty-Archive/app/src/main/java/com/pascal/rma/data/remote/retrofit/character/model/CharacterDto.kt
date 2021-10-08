@@ -1,4 +1,4 @@
-package com.pascal.rma.data.remote.retrofit.model.character
+package com.pascal.rma.data.remote.retrofit.character.model
 
 data class CharacterDto(
     val created: String,

@@ -3,9 +3,10 @@ package com.pascal.rma.di.module
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.pascal.rma.data.remote.retrofit.ApiHolder
-import com.pascal.rma.data.remote.retrofit.IApiHolder
-import com.pascal.rma.data.remote.retrofit.RmApiService
+import com.pascal.rma.data.remote.retrofit.*
+import com.pascal.rma.data.remote.retrofit.character.CharacterApiService
+import com.pascal.rma.data.remote.retrofit.episode.EpisodeApiService
+import com.pascal.rma.data.remote.retrofit.location.LocationApiService
 import com.pascal.rma.util.AndroidNetworkStatus
 import com.pascal.rma.util.INetworkStatus
 import dagger.Binds
@@ -41,16 +42,44 @@ interface ApiModule {
 
         @Singleton
         @Provides
-        fun githubService(
+        fun CharacterApiService(
             @Named("baseUrl") baseUrl: String,
             gson: Gson
-        ): RmApiService {
+        ): CharacterApiService {
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
-                .create(RmApiService::class.java)
+                .create(CharacterApiService::class.java)
+        }
+
+        @Singleton
+        @Provides
+        fun LocationApiService(
+            @Named("baseUrl") baseUrl: String,
+            gson: Gson
+        ): LocationApiService {
+            return Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+                .create(LocationApiService::class.java)
+        }
+
+        @Singleton
+        @Provides
+        fun EpisodeApiService(
+            @Named("baseUrl") baseUrl: String,
+            gson: Gson
+        ): EpisodeApiService {
+            return Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+                .create(EpisodeApiService::class.java)
         }
 
         @Provides

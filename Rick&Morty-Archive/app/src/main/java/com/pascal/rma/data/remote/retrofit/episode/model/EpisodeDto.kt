@@ -1,4 +1,4 @@
-package com.pascal.rma.data.remote.retrofit.model.episode
+package com.pascal.rma.data.remote.retrofit.episode.model
 
 data class EpisodeDto(
     val air_date: String,

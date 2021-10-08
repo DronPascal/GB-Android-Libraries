@@ -1,4 +1,4 @@
-package com.pascal.rma.data.remote.retrofit.model.location
+package com.pascal.rma.data.remote.retrofit.location.model
 
 data class LocationPageDto(
     val info: InfoDto,

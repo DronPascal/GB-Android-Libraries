@@ -1,4 +1,4 @@
-package com.pascal.rma.data.remote.retrofit.model.character
+package com.pascal.rma.data.remote.retrofit.location.model
 
 data class InfoDto(
     val count: Int,
