@@ -33,7 +33,7 @@ interface ApiModule {
         @Provides
         @Singleton
         @Named("baseUrl")
-        fun baseUrl(): String = "https://rickandmortyapi.com/api"
+        fun baseUrl(): String = "https://rickandmortyapi.com/api/"
 
         @Provides
         @Singleton

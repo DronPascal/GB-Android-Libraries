@@ -1,6 +1,6 @@
 package com.pascal.rma.data.remote.retrofit.location.model
 
-data class LocationDto(
+data class ApiLocation(
     val created: String,
     val dimension: String,
     val id: Int,
