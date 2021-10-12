@@ -11,7 +11,7 @@ import javax.inject.Singleton
  * Created by dronpascal on 05.10.2021.
  */
 @Module
-class CiceroneModule {
+object CiceroneModule {
 
     private val cicerone: Cicerone<Router> = Cicerone.create()
 
