@@ -9,7 +9,7 @@ import com.pascal.rma.data.cache.room.character.RoomCharacter
 import com.pascal.rma.data.cache.room.character.RoomCharacterMappers.toRoomCharacter
 import com.pascal.rma.data.remote.retrofit.character.CharacterApiService
 import com.pascal.rma.data.remote.retrofit.character.model.ApiCharactersPage
-import com.pascal.rma.util.apiId
+import com.pascal.rma.util.pageId
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.InvalidObjectException
@@ -67,8 +67,8 @@ class CharactersRemoteMediator(
     ): ApiCharactersPage {
         database.runInTransaction {
             if (loadType == LoadType.REFRESH) database.characterDao.clearAll()
-            val prevKey = data.info.prev.apiId()
-            val nextKey = data.info.next.apiId()
+            val prevKey = data.info.prev.pageId()
+            val nextKey = data.info.next.pageId()
             val keys = data.results.map {
                 RoomCharacter.RemoteKey(characterId = it.id, prevKey = prevKey, nextKey = nextKey)
             }
@@ -101,7 +101,7 @@ class CharactersRemoteMediator(
     }
 
     companion object {
-        const val INVALID_PAGE = -1
+        const val INVALID_PAGE = 0
     }
 
 }

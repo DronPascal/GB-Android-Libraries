@@ -17,9 +17,9 @@ data class RoomCharacter(
     val gender: String,
     val image: String,
     val origin: String,
-    val originId: Int,
+    val originId: Int?,
     val location: String,
-    val locationId: Int,
+    val locationId: Int?,
 ) {
 
     @Entity(
@@ -47,8 +47,7 @@ data class RoomCharacter(
         )]
     )
     data class Episode(
-        @PrimaryKey
-        val characterId: String,
+        @PrimaryKey val characterId: String,
         val episodeId: Int,
         val name: String,
     )
