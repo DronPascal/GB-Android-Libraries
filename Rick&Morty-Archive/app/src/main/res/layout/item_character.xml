@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@id/img_avatar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside"
+            app:layout_constraintVertical_chainStyle="spread"
             tools:text="Dr. Wong" />
 
 
@@ -43,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/tiny_margin"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
             app:layout_constraintBottom_toTopOf="@+id/tv_location_title"
             app:layout_constraintStart_toEndOf="@id/img_avatar"
@@ -52,9 +53,10 @@
         <TextView
             android:id="@+id/tv_location_title"
             android:layout_width="wrap_content"
+            android:text="@string/character_last_location"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/tiny_margin"
+            android:layout_marginTop="@dimen/small_margin"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             app:layout_constraintBottom_toTopOf="@+id/tv_location"
             app:layout_constraintStart_toEndOf="@id/img_avatar"
@@ -67,40 +69,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            app:layout_constraintBottom_toTopOf="@+id/tv_episode_title"
             app:layout_constraintEnd_toEndOf="@id/end_guideline"
             app:layout_constraintStart_toEndOf="@+id/img_avatar"
             app:layout_constraintTop_toBottomOf="@+id/tv_location_title"
             tools:text="Earth (Replacement Dimension)" />
-
-        <TextView
-            android:id="@+id/tv_episode_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/tiny_margin"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-            app:layout_constraintBottom_toTopOf="@+id/tv_episode"
-            app:layout_constraintStart_toEndOf="@id/img_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/tv_location"
-            tools:text="First seen in:" />
-
-        <TextView
-            android:id="@+id/tv_episode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginBottom="@dimen/small_margin"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
-            app:layout_constraintStart_toEndOf="@id/img_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/tv_episode_title"
-            tools:text="Pickle Rick" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/end_guideline"

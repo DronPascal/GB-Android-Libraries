@@ -4,4 +4,10 @@
     <string name="characters">Characters</string>
     <string name="locations">Locations</string>
     <string name="episodes">Episodes</string>
+
+    <string name="error_paging">Loading error</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="cancel">Cancel</string>
+    <string name="retry">Retry</string>
+    <string name="character_last_location">Last known location:</string>
 </resources>

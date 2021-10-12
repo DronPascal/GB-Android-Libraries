@@ -1,8 +1,8 @@
 package com.pascal.rma.data.remote.retrofit.location.model
 
-data class InfoDto(
+data class ApiPageInfo(
     val count: Int,
-    val next: String,
     val pages: Int,
-    val prev: Any
+    val next: String?,
+    val prev: String?
 )

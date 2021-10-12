@@ -1,12 +1,11 @@
 package com.pascal.rma.di.component
 
-import com.pascal.rma.di.module.ApiModule
-import com.pascal.rma.di.module.AppModule
-import com.pascal.rma.di.module.CiceroneModule
+import com.pascal.rma.di.module.*
 import com.pascal.rma.presentation.activity.MainActivity
 import com.pascal.rma.presentation.activity.MainPresenter
 import com.pascal.rma.presentation.screens.categories.CategoriesPresenter
 import com.pascal.rma.presentation.screens.character.list.CharactersPresenter
+import com.pascal.rma.presentation.screens.character.list.adapter.CharacterViewHolder
 import dagger.Component
 import javax.inject.Singleton
 
@@ -19,6 +18,9 @@ import javax.inject.Singleton
         AppModule::class,
         CiceroneModule::class,
         ApiModule::class,
+        CacheModule::class,
+        GlideModule::class,
+        InteractorsModule::class
     ]
 )
 interface AppComponent {
@@ -27,6 +29,8 @@ interface AppComponent {
 
     fun inject(mainActivity: MainActivity)
 
-    fun inject(CategoriesPresenter: CategoriesPresenter)
-    fun inject(CategoriesPresenter: CharactersPresenter)
+    fun inject(categoriesPresenter: CategoriesPresenter)
+
+    fun inject(charactersPresenter: CharactersPresenter)
+    fun inject(characterViewHolder: CharacterViewHolder)
 }

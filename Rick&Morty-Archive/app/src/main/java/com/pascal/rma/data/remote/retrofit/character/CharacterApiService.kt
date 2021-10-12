@@ -1,8 +1,11 @@
 package com.pascal.rma.data.remote.retrofit.character
 
-import com.pascal.rma.data.remote.retrofit.character.model.CharacterPageDto
+import com.pascal.rma.data.remote.retrofit.character.model.ApiCharacter
+import com.pascal.rma.data.remote.retrofit.character.model.ApiCharactersPage
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 import retrofit2.http.Url
 
 /**
@@ -10,8 +13,17 @@ import retrofit2.http.Url
  */
 interface CharacterApiService {
 
-    @GET("/character")
-    fun getCharacters(): Single<CharacterPageDto>
+    @GET("character/")
+    fun getCharactersPage(
+        @Query("page") page: Int,
+    ): Single<ApiCharactersPage>
 
-    fun getCharacterPage(@Url pageUrl: String): Single<CharacterPageDto>
+    @GET("character/{id}")
+    fun getCharacterById(
+        @Path("id") id: Int
+    ): Single<ApiCharacter>
+
+    @GET
+    fun getCharacterByUrl(@Url url: String): Single<ApiCharacter>
+
 }
