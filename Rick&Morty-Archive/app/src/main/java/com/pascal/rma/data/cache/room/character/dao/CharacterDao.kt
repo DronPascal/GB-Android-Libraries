@@ -1,7 +1,10 @@
 package com.pascal.rma.data.cache.room.character.dao
 
 import androidx.paging.PagingSource
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.pascal.rma.data.cache.room.character.RoomCharacter
 
 /**
@@ -14,12 +17,12 @@ interface CharacterDao {
     fun insert(character: RoomCharacter)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(characters: List<RoomCharacter>)
+    fun insertAll(characters: List<RoomCharacter>)
 
     @Query("SELECT * FROM characters ORDER BY id ASC")
-    fun getAll(): PagingSource<Int, RoomCharacter>
+    fun selectAll(): PagingSource<Int, RoomCharacter>
 
     @Query("DELETE FROM characters")
-    fun clearCharacters()
+    fun clearAll()
 
 }

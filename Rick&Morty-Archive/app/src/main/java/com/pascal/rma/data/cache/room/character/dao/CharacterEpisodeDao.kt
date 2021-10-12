@@ -20,6 +20,6 @@ interface CharacterEpisodeDao {
     fun qetAll(): Single<List<RoomCharacter.Episode>>
 
     @Query("DELETE FROM character_episodes")
-    fun clearRemoteKeys()
+    fun clearAll()
 
 }

@@ -16,9 +16,9 @@ interface CharacterRemoteKeyDao {
     fun insertAll(remoteKeys: List<RoomCharacter.RemoteKey>)
 
     @Query("SELECT * FROM character_remote_keys WHERE characterId = :characterId")
-    fun remoteKeysByCharacterId(characterId: Int): RoomCharacter.RemoteKey?
+    fun remoteKeyByCharacterId(characterId: Int): RoomCharacter.RemoteKey?
 
     @Query("DELETE FROM character_remote_keys")
-    fun clearRemoteKeys()
+    fun clearAll()
 
 }

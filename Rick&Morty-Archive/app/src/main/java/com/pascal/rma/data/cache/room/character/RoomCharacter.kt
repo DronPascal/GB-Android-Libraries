@@ -22,9 +22,17 @@ data class RoomCharacter(
     val locationId: Int,
 ) {
 
-    @Entity(tableName = "character_remote_keys")
+    @Entity(
+        tableName = "character_remote_keys",
+        foreignKeys = [ForeignKey(
+            entity = RoomCharacter::class,
+            parentColumns = ["id"],
+            childColumns = ["characterId"],
+            onDelete = ForeignKey.CASCADE
+        )]
+    )
     data class RemoteKey(
-        @PrimaryKey val characterId: Long,
+        @PrimaryKey val characterId: Int,
         val prevKey: Int?,
         val nextKey: Int?
     )
