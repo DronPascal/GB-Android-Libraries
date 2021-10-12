@@ -11,7 +11,9 @@ import com.pascal.rma.R
 import com.pascal.rma.databinding.FragmentCharactersBinding
 import com.pascal.rma.presentation.navigation.BackButtonListener
 import com.pascal.rma.presentation.screens.character.list.adapter.CharacterAdapter
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -44,6 +46,7 @@ class CharactersFragment : MvpAppCompatFragment(), CharactersView, BackButtonLis
 
     @ExperimentalCoroutinesApi
     override fun initView() {
+        activity?.title = getString(R.string.characters)
         initRecyclerView()
     }
 
@@ -62,9 +65,12 @@ class CharactersFragment : MvpAppCompatFragment(), CharactersView, BackButtonLis
             }
         }
 
-        mDisposable.add(presenter.getCharacters().subscribe {
-            mAdapter.submitData(lifecycle, it)
-        })
+        mDisposable.add(presenter.getCharactersFlowable()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                mAdapter.submitData(lifecycle, it)
+            })
     }
 
     override fun showRetryAlertDialog(message: String?) {

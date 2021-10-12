@@ -28,6 +28,9 @@ class CharacterViewHolder(
     fun bind(character: Character) {
         with(character) {
             imageLoader.loadTo(image, binding.imgAvatar)
+            binding.tvName.text = name
+            binding.tvStatusAndRace.text = getStatusAndSpecies()
+            binding.tvLocation.text = location
         }
     }
 

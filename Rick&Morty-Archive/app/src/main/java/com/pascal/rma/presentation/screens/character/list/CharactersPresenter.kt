@@ -1,11 +1,13 @@
 package com.pascal.rma.presentation.screens.character.list
 
 import androidx.paging.PagingData
-import com.pascal.rma.data.cache.CharacterCache
+import androidx.paging.rxjava3.cachedIn
+import com.pascal.rma.domain.interactors.GetCharacters
 import com.pascal.rma.domain.model.Character
 import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import moxy.MvpPresenter
+import moxy.presenterScope
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -18,7 +20,7 @@ class CharactersPresenter : MvpPresenter<CharactersView>() {
     lateinit var router: Router
 
     @Inject
-    lateinit var cache: CharacterCache
+    lateinit var getCharacters: GetCharacters
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -31,8 +33,8 @@ class CharactersPresenter : MvpPresenter<CharactersView>() {
     }
 
     @ExperimentalCoroutinesApi
-    fun getCharacters(): Flowable<PagingData<Character>> {
-        return cache.getAll()
+    fun getCharactersFlowable(): Flowable<PagingData<Character>> {
+        return getCharacters.execute().cachedIn(presenterScope)
     }
 
     fun onRetryDialogConfirm() {

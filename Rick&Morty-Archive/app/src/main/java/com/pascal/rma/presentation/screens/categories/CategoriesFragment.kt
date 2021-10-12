@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.pascal.rma.App
+import com.pascal.rma.R
 import com.pascal.rma.databinding.FragmentCategoriesBinding
 import com.pascal.rma.presentation.navigation.BackButtonListener
 import moxy.MvpAppCompatFragment
@@ -34,6 +35,7 @@ class CategoriesFragment : MvpAppCompatFragment(), CategoriesView, BackButtonLis
     }
 
     override fun initView() {
+        activity?.title = getString(R.string.app_name)
         vb?.cdCharacters?.setOnClickListener { presenter.onNavigateToCharacters() }
         vb?.cdLocations?.setOnClickListener { presenter.onNavigateToLocations() }
         vb?.cdEpisodes?.setOnClickListener { presenter.onNavigateToEpisodes() }
