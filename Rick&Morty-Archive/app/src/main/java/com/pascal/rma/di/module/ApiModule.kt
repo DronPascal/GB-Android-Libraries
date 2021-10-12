@@ -13,6 +13,8 @@ import com.pascal.rma.util.INetworkStatus
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -38,17 +40,35 @@ interface ApiModule {
         @Provides
         @Singleton
         fun gson(): Gson = GsonBuilder()
-            .excludeFieldsWithoutExposeAnnotation()
+            //.excludeFieldsWithoutExposeAnnotation()
             .create()
+
+        @Provides
+        @Singleton
+        fun logger(): HttpLoggingInterceptor {
+            return HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BASIC
+            }
+        }
+
+        @Provides
+        @Singleton
+        fun client(logger: HttpLoggingInterceptor): OkHttpClient {
+            return OkHttpClient.Builder()
+                .addInterceptor(logger)
+                .build()
+        }
 
         @Singleton
         @Provides
         fun CharacterApiService(
             @Named("baseUrl") baseUrl: String,
+            client: OkHttpClient,
             gson: Gson
         ): CharacterApiService {
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(client)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
@@ -89,3 +109,4 @@ interface ApiModule {
             AndroidNetworkStatus(context)
     }
 }
+

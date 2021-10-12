@@ -19,7 +19,8 @@ import javax.inject.Singleton
         CiceroneModule::class,
         ApiModule::class,
         CacheModule::class,
-        GlideModule::class
+        GlideModule::class,
+        InteractorsModule::class
     ]
 )
 interface AppComponent {

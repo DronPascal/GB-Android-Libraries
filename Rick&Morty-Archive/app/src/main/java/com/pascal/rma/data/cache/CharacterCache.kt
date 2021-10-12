@@ -24,8 +24,8 @@ class CharacterCache @ExperimentalPagingApi constructor(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = true,
-                maxSize = 50,
-                prefetchDistance = 15,
+                maxSize = 60,
+                prefetchDistance = 20,
                 initialLoadSize = 40
             ),
             remoteMediator = characterRemoteMediator,
