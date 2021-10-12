@@ -38,13 +38,14 @@ class CharactersPresenter : MvpPresenter<CharactersView>() {
     }
 
     fun onRetryDialogConfirm() {
-        viewState.hideRetryAlertDialog()    }
+        viewState.hideRetryAlertDialog()
+    }
 
     fun onRetryDialogCancel() {
         viewState.hideRetryAlertDialog()
     }
 
     fun onPagingError(error: Throwable) {
-       viewState.showRetryAlertDialog(error.localizedMessage)
+        viewState.showRetryAlertDialog(error.localizedMessage)
     }
 }
