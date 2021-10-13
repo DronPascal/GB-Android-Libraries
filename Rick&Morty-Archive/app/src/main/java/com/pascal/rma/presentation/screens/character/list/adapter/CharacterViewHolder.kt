@@ -1,6 +1,7 @@
 package com.pascal.rma.presentation.screens.character.list.adapter
 
 import android.view.LayoutInflater
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
@@ -25,12 +26,20 @@ class CharacterViewHolder(
         App.instance.appComponent.inject(this)
     }
 
-    fun bind(character: Character) {
+    fun bind(
+        character: Character,
+        onItemClicked: (Character) -> Unit
+    ) {
         with(character) {
             imageLoader.loadTo(image, binding.imgAvatar)
             binding.tvName.text = name
-            binding.tvStatusAndRace.text = getStatusAndSpecies()
+            val statusAndRace = getStatusAndSpecies()
+            when (statusAndRace.isNullOrBlank()) {
+                true -> binding.tvStatusAndRace.visibility = GONE
+                false -> binding.tvStatusAndRace.text = statusAndRace
+            }
             binding.tvLocation.text = location
+            binding.root.setOnClickListener { onItemClicked(this) }
         }
     }
 

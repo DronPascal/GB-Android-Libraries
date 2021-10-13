@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.pascal.rma.App
 import com.pascal.rma.R
 import com.pascal.rma.databinding.FragmentCharactersBinding
+import com.pascal.rma.domain.model.Character
+import com.pascal.rma.presentation.activity.MainActivity
 import com.pascal.rma.presentation.navigation.BackButtonListener
 import com.pascal.rma.presentation.screens.character.list.adapter.CharacterAdapter
+import com.pascal.rma.util.ConfigurationUtil.isPortrait
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -47,11 +52,24 @@ class CharactersFragment : MvpAppCompatFragment(), CharactersView, BackButtonLis
     @ExperimentalCoroutinesApi
     override fun initView() {
         activity?.title = getString(R.string.characters)
+        (activity as MainActivity).setDisplayHomeAsUpEnabled(false)
         initRecyclerView()
     }
 
     @ExperimentalCoroutinesApi
     private fun initRecyclerView() {
+        if (requireContext().isPortrait()) {
+            mBinding?.rvCharacters?.layoutManager = LinearLayoutManager(requireContext())
+        } else {
+            mBinding?.rvCharacters?.layoutManager = GridLayoutManager(requireContext(), 2)
+        }
+
+        mAdapter.setItemClickListener(object : CharacterAdapter.OnItemClickListener {
+            override fun onItemClicked(item: Character) {
+                presenter.onNavigateToCharacterDetail(character = item)
+            }
+        })
+
         mBinding?.rvCharacters?.adapter = mAdapter
 
         mAdapter.addLoadStateListener { loadState ->

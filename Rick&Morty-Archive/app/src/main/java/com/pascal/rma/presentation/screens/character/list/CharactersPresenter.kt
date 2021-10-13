@@ -4,7 +4,10 @@ import androidx.paging.PagingData
 import androidx.paging.rxjava3.cachedIn
 import com.pascal.rma.domain.interactors.GetCharacters
 import com.pascal.rma.domain.model.Character
+import com.pascal.rma.presentation.navigation.AppScreens
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import moxy.MvpPresenter
 import moxy.presenterScope
@@ -27,14 +30,20 @@ class CharactersPresenter : MvpPresenter<CharactersView>() {
         viewState.initView()
     }
 
-    fun onBackPressed(): Boolean {
-        router.exit()
-        return true
-    }
-
     @ExperimentalCoroutinesApi
     fun getCharactersFlowable(): Flowable<PagingData<Character>> {
-        return getCharacters.execute().cachedIn(presenterScope)
+        return getCharacters.execute()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .cachedIn(presenterScope)
+    }
+
+    fun onNavigateToCharacterDetail(character: Character) {
+        router.navigateTo(AppScreens.CharacterDetailScreen(character))
+    }
+
+    fun onPagingError(error: Throwable) {
+        viewState.showRetryAlertDialog(error.localizedMessage)
     }
 
     fun onRetryDialogConfirm() {
@@ -45,7 +54,9 @@ class CharactersPresenter : MvpPresenter<CharactersView>() {
         viewState.hideRetryAlertDialog()
     }
 
-    fun onPagingError(error: Throwable) {
-        viewState.showRetryAlertDialog(error.localizedMessage)
+    fun onBackPressed(): Boolean {
+        router.exit()
+        return true
     }
+
 }
