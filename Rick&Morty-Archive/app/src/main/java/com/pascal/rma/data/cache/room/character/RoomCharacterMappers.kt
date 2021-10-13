@@ -12,17 +12,17 @@ object RoomCharacterMappers {
     fun Character.toRoomCharacter(): RoomCharacter {
         return with(this) {
             RoomCharacter(
-                id,
-                name,
-                status,
-                species,
-                type,
-                gender,
-                image,
-                origin,
-                originId,
-                location,
-                locationId
+                id = id,
+                name = name,
+                status = status,
+                species = species,
+                type = type,
+                gender = gender,
+                image = image,
+                origin = origin,
+                originId = originId,
+                location = location,
+                locationId = locationId
             )
         }
     }
@@ -30,18 +30,18 @@ object RoomCharacterMappers {
     fun RoomCharacter.toCharacter(): Character {
         return with(this) {
             Character(
-                id,
-                name,
-                status,
-                species,
-                type,
-                gender,
-                image,
-                origin,
-                originId,
-                location,
-                locationId,
-                emptyList()
+                id = id,
+                name = name,
+                status = status,
+                species = species,
+                type = type,
+                gender = gender,
+                image = image,
+                origin = origin,
+                originId = originId,
+                location = location,
+                locationId = locationId,
+                episodes = emptyList()
             )
         }
     }
@@ -49,17 +49,17 @@ object RoomCharacterMappers {
     fun ApiCharacter.toRoomCharacter(): RoomCharacter {
         return with(this) {
             RoomCharacter(
-                id,
-                name,
-                status,
-                species,
-                type,
-                gender,
-                image,
-                origin.name,
-                origin.url.unitId(),
-                location.name,
-                location.url.unitId(),
+                id = id,
+                name = name,
+                status = status,
+                species = species,
+                type = type,
+                gender = gender,
+                image = image,
+                origin = origin.name,
+                originId = origin.url.unitId(),
+                location = location.name,
+                locationId = location.url.unitId(),
             )
         }
     }

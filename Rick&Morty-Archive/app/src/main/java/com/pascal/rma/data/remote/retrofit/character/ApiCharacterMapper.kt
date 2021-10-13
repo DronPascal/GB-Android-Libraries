@@ -12,18 +12,18 @@ object ApiCharacterMapper {
     fun ApiCharacter.toCharacter(): Character {
         return with(this) {
             Character(
-                id,
-                name,
-                status,
-                species,
-                type,
-                gender,
-                image,
-                origin.name,
-                origin.url.unitId(),
-                location.name,
-                location.url.unitId(),
-                emptyList()
+                id = id,
+                name = name,
+                status = status,
+                species = species,
+                type = type,
+                gender = gender,
+                image = image,
+                origin = origin.name,
+                originId = origin.url.unitId(),
+                location = location.name,
+                locationId = location.url.unitId(),
+                episodes = emptyList()
             )
         }
     }
