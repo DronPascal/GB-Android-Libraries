@@ -9,7 +9,7 @@
     <string name="unknown_error">Unknown error</string>
     <string name="cancel">Cancel</string>
     <string name="retry">Retry</string>
-    
+
     <string name="character_last_location">Last known location:</string>
     <string name="character_status_title">Status:</string>
     <string name="character_species_title">Species:</string>

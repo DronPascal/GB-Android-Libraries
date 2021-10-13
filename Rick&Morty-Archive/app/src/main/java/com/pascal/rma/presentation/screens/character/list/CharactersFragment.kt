@@ -58,10 +58,9 @@ class CharactersFragment : MvpAppCompatFragment(), CharactersView, BackButtonLis
 
     @ExperimentalCoroutinesApi
     private fun initRecyclerView() {
-        if (requireContext().isPortrait()) {
-            mBinding?.rvCharacters?.layoutManager = LinearLayoutManager(requireContext())
-        } else {
-            mBinding?.rvCharacters?.layoutManager = GridLayoutManager(requireContext(), 2)
+        mBinding?.rvCharacters?.layoutManager = when (requireContext().isPortrait()) {
+            true -> LinearLayoutManager(requireContext())
+            false -> GridLayoutManager(requireContext(), 2)
         }
 
         mAdapter.setItemClickListener(object : CharacterAdapter.OnItemClickListener {
@@ -81,6 +80,11 @@ class CharactersFragment : MvpAppCompatFragment(), CharactersView, BackButtonLis
             errorState?.let {
                 presenter.onPagingError(it.error)
             }
+        }
+
+        mBinding?.swipeRefresh?.setOnRefreshListener {
+            mAdapter.retry()
+            mBinding?.swipeRefresh?.isRefreshing = false
         }
 
         mDisposable.add(presenter.getCharactersFlowable()
