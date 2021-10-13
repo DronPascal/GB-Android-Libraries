@@ -2,7 +2,7 @@ package com.pascal.rma.data.remote.retrofit.character
 
 import com.pascal.rma.data.remote.retrofit.character.model.ApiCharacter
 import com.pascal.rma.domain.model.Character
-import com.pascal.rma.util.unitId
+import com.pascal.rma.util.StringUtil.unitId
 
 /**
  * Created by dronpascal on 12.10.2021.
@@ -23,7 +23,7 @@ object ApiCharacterMapper {
                 originId = origin.url.unitId(),
                 location = location.name,
                 locationId = location.url.unitId(),
-                episodes = emptyList()
+                episodes = null
             )
         }
     }
