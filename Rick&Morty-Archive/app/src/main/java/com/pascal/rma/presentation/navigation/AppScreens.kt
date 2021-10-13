@@ -1,6 +1,8 @@
 package com.pascal.rma.presentation.navigation
 
+import com.pascal.rma.domain.model.Character
 import com.pascal.rma.presentation.screens.categories.CategoriesFragment
+import com.pascal.rma.presentation.screens.character.detail.CharacterDetailFragment
 import com.pascal.rma.presentation.screens.character.list.CharactersFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
@@ -17,9 +19,9 @@ object AppScreens {
         override fun getFragment() = CharactersFragment()
     }
 
-//    class CharacterDetailScreen(private val character: Character) : SupportAppScreen() {
-//        override fun getFragment() = CharacterDetailFragment.newInstance(character)
-//    }
+    class CharacterDetailScreen(private val character: Character) : SupportAppScreen() {
+        override fun getFragment() = CharacterDetailFragment.newInstance(character)
+    }
 //
 //    class LocationsScreen() : SupportAppScreen() {
 //        override fun getFragment() = LocationsFragment

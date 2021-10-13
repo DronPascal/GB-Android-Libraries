@@ -4,6 +4,8 @@ import com.pascal.rma.di.module.*
 import com.pascal.rma.presentation.activity.MainActivity
 import com.pascal.rma.presentation.activity.MainPresenter
 import com.pascal.rma.presentation.screens.categories.CategoriesPresenter
+import com.pascal.rma.presentation.screens.character.detail.CharacterDetailFragment
+import com.pascal.rma.presentation.screens.character.detail.CharacterDetailPresenter
 import com.pascal.rma.presentation.screens.character.list.CharactersPresenter
 import com.pascal.rma.presentation.screens.character.list.adapter.CharacterViewHolder
 import dagger.Component
@@ -33,4 +35,6 @@ interface AppComponent {
 
     fun inject(charactersPresenter: CharactersPresenter)
     fun inject(characterViewHolder: CharacterViewHolder)
+    fun inject(characterDetailPresenter: CharacterDetailPresenter)
+    fun inject(characterDetailPresenter: CharacterDetailFragment)
 }

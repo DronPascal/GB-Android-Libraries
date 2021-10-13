@@ -2,6 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--  Character Item  -->
     <dimen name="character_card_height" tools:ignore="UnusedResources">144dp</dimen>
+    <dimen name="character_avatar_size" tools:ignore="UnusedResources">128dp</dimen>
     <dimen name="character_status_indicator_size" tools:ignore="UnusedResources">8dp</dimen>
 
     <!--  Global  -->
