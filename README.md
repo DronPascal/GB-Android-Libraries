@@ -1,2 +1,2 @@
 # GB-Popular-Libraries
-Популярные библиотеки: RxJava 2, Dagger 2, Moxy
+Popular libraries: RxJava2, Dagger2, Room, Retrofit, Moxy, Cicerone, Paging3, Glide.
