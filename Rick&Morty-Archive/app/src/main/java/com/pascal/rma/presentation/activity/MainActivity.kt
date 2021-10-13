@@ -1,6 +1,7 @@
 package com.pascal.rma.presentation.activity
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.pascal.rma.App
 import com.pascal.rma.R
 import com.pascal.rma.databinding.ActivityMainBinding
@@ -19,26 +20,23 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
-    private val navigator = SupportAppNavigator(this, R.id.container)
+    init {
+        App.instance.appComponent.inject(this)
+    }
 
     private val presenter by moxyPresenter {
         App.instance.appComponent.presenter()
     }
 
-    init {
-        App.instance.appComponent.inject(this)
-    }
+    private var binding: ActivityMainBinding? = null
 
-    private var _vb: ActivityMainBinding? = null
-
-    private val vb
-        get() = _vb!!
+    private val navigator = SupportAppNavigator(this, R.id.container)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _vb = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(vb.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
     }
 
     override fun onResumeFragments() {
@@ -51,12 +49,22 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         navigatorHolder.removeNavigator()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return presenter.onBackPressed()
+    }
+
+    fun setDisplayHomeAsUpEnabled(showHomeAsUp: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(showHomeAsUp)
+    }
+
     override fun onBackPressed() {
         supportFragmentManager.fragments.forEach {
             if (it is BackButtonListener && it.backPressed()) {
                 return
             }
         }
-        presenter.backPressed()
+        presenter.onBackPressed()
     }
 }
+
+

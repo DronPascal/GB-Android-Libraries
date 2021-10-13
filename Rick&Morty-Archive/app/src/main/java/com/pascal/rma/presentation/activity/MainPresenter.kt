@@ -15,7 +15,8 @@ class MainPresenter @Inject constructor(private val router: Router) : MvpPresent
         router.replaceScreen(AppScreens.CategoriesScreen())
     }
 
-    fun backPressed() {
+    fun onBackPressed(): Boolean {
         router.exit()
+        return true
     }
 }
