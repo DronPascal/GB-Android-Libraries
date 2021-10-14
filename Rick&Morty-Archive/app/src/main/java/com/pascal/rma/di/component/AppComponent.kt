@@ -18,11 +18,12 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AppModule::class,
-        CiceroneModule::class,
         ApiModule::class,
-        CacheModule::class,
+        CiceroneModule::class,
         GlideModule::class,
-        InteractorsModule::class
+        DataCharacterModule::class,
+        DataEpisodeModule::class,
+        InteractorsModule::class,
     ]
 )
 interface AppComponent {

@@ -3,9 +3,10 @@ package com.pascal.rma.di.module
 import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import androidx.room.Room
-import com.pascal.rma.data.cache.CharacterCache
-import com.pascal.rma.data.cache.room.character.CharacterDatabase
+import com.pascal.rma.data.local.cache.CharacterCache
+import com.pascal.rma.data.local.cache.room.character.CharacterDatabase
 import com.pascal.rma.data.paging.character.CharactersRemoteMediator
+import com.pascal.rma.data.remote.CharacterService
 import com.pascal.rma.data.remote.retrofit.character.CharacterApiService
 import dagger.Module
 import dagger.Provides
@@ -15,7 +16,7 @@ import javax.inject.Singleton
  * Created by dronpascal on 10.10.2021.
  */
 @Module
-object CacheModule {
+object DataCharacterModule {
 
     private const val CHARACTER_DB_NAME = "characters.db"
 
@@ -53,4 +54,13 @@ object CacheModule {
             charactersRemoteMediator
         )
     }
+
+    @Singleton
+    @Provides
+    fun provideCharacterService(
+        characterApiService: CharacterApiService
+    ): CharacterService {
+        return CharacterService(characterApiService)
+    }
+
 }
