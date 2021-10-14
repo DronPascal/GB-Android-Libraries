@@ -9,10 +9,13 @@ import moxy.viewstate.strategy.alias.OneExecution
  */
 interface CharacterDetailView : MvpView {
 
+    @OneExecution
+    fun initData()
+
     @AddToEndSingle
     fun initView()
 
-    @OneExecution
-    fun initData()
+    @AddToEndSingle
+    fun initEpisodeView()
 
 }

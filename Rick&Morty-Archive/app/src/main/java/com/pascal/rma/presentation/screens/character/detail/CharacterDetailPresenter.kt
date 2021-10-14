@@ -1,6 +1,12 @@
 package com.pascal.rma.presentation.screens.character.detail
 
+import android.util.Log
+import com.pascal.rma.domain.interactors.GetEpisodes
 import com.pascal.rma.domain.model.Character
+import com.pascal.rma.domain.model.Episode
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
@@ -13,15 +19,41 @@ class CharacterDetailPresenter : MvpPresenter<CharacterDetailView>() {
     @Inject
     lateinit var router: Router
 
+    @Inject
+    lateinit var getEpisodes: GetEpisodes
+
     var character: Character? = null
+    var episodes: List<Episode> = emptyList()
+    private val disposable = CompositeDisposable()
+
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.initData()
+        loadData()
         viewState.initView()
     }
 
+    private fun loadData() {
+        viewState.initData()
+
+        character?.episodeIds?.let { episodeIds ->
+            disposable.add(
+                getEpisodes.execute(episodeIds)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ episodeList ->
+                        episodes = episodeList
+                        println(episodeList)
+                        if (episodes.isNotEmpty()) viewState.initEpisodeView()
+                    }, {
+                        Log.e("EpisodePresenter", "Ошибка получения списка", it)
+                    })
+            )
+        }
+    }
+
     fun onBackPressed(): Boolean {
+        disposable.dispose()
         router.exit()
         return true
     }

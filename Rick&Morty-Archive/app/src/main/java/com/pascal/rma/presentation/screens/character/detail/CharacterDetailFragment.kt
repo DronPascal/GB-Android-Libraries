@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.os.bundleOf
@@ -31,11 +32,11 @@ class CharacterDetailFragment : MvpAppCompatFragment(), CharacterDetailView, Bac
         }
     }
 
-    private var binding: FragmentCharacterDetailBinding? = null
-
     init {
         App.instance.appComponent.inject(this)
     }
+
+    private var binding: FragmentCharacterDetailBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +49,29 @@ class CharacterDetailFragment : MvpAppCompatFragment(), CharacterDetailView, Bac
     }
 
     override fun initData() {
-        presenter.character = requireArguments().getParcelable(CHARACTER_ARGUMENT)
+        with(presenter) {
+            character = requireArguments().getParcelable(CHARACTER_ARGUMENT)
+        }
+    }
+
+    override fun initEpisodeView() {
+        presenter.run {
+            binding?.run {
+                val firstSeen = episodes[0].name
+                tvFirstSeen.text = "⭘ $firstSeen"
+
+                val episodesStr = StringBuilder("")
+                episodes.forEachIndexed { id, it -> if (id > 0) episodesStr.append("• ${it.name}\n") }
+                tvEpisodes.text = episodesStr
+
+                val firstSeenVisibility = if (firstSeen.isBlank()) GONE else VISIBLE
+                tvFirstSeen.visibility = firstSeenVisibility
+                tvFirstSeenTitle.visibility = firstSeenVisibility
+                val episodesVisibility = if (episodesStr.isBlank()) GONE else VISIBLE
+                tvEpisodes.visibility = episodesVisibility
+                tvEpisodesTitle.visibility = episodesVisibility
+            }
+        }
     }
 
     override fun initView() {
@@ -65,8 +88,6 @@ class CharacterDetailFragment : MvpAppCompatFragment(), CharacterDetailView, Bac
                 tvGender.text = gender
                 tvOrigin.text = origin
                 tvLocation.text = location
-                tvFirstSeen.text = ""
-                tvEpisodes.text = ""
 
                 if (status.isBlank()) {
                     tvStatus.visibility = GONE; tvStatusTitle.visibility = GONE
@@ -86,12 +107,8 @@ class CharacterDetailFragment : MvpAppCompatFragment(), CharacterDetailView, Bac
                 if (location.isBlank()) {
                     tvLocation.visibility = GONE; tvLocationTitle.visibility = GONE
                 }
-                if ("".isBlank()) {
-                    tvFirstSeen.visibility = GONE; tvFirstSeenTitle.visibility = GONE
-                }
-                if ("".isBlank()) {
-                    tvEpisodes.visibility = GONE; tvEpisodesTitle.visibility = GONE
-                }
+                tvFirstSeen.visibility = GONE; tvFirstSeenTitle.visibility = GONE
+                tvEpisodes.visibility = GONE; tvEpisodesTitle.visibility = GONE
             }
         }
     }
