@@ -4,9 +4,9 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxRemoteMediator
-import com.pascal.rma.data.cache.room.character.CharacterDatabase
-import com.pascal.rma.data.cache.room.character.RoomCharacter
-import com.pascal.rma.data.cache.room.character.RoomCharacterMappers.toRoomCharacter
+import com.pascal.rma.data.local.cache.room.character.CharacterDatabase
+import com.pascal.rma.data.local.cache.room.character.RoomCharacter
+import com.pascal.rma.data.local.cache.room.character.RoomCharacterMappers.toRoomCharacter
 import com.pascal.rma.data.remote.retrofit.character.CharacterApiService
 import com.pascal.rma.data.remote.retrofit.character.model.ApiCharactersPage
 import com.pascal.rma.util.StringUtil.pageId
@@ -31,6 +31,9 @@ class CharactersRemoteMediator(
             .map {
                 when (it) {
                     LoadType.REFRESH -> {
+                        // TODO On REFRESH remoteKey is always null
+                        //  as state.anchorPosition always null...
+                        //  This issue may be paging 3 fault
                         val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
                         val curKey = remoteKeys?.nextKey?.minus(1) ?: STARTING_PAGE_INDEX
                         curKey
