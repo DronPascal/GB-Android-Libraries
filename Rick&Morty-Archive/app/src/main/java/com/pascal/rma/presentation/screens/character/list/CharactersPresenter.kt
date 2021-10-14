@@ -2,7 +2,7 @@ package com.pascal.rma.presentation.screens.character.list
 
 import androidx.paging.PagingData
 import androidx.paging.rxjava3.cachedIn
-import com.pascal.rma.domain.interactors.GetCharacters
+import com.pascal.rma.domain.interactors.GetCharacterFlow
 import com.pascal.rma.domain.model.Character
 import com.pascal.rma.presentation.navigation.AppScreens
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -23,7 +23,9 @@ class CharactersPresenter : MvpPresenter<CharactersView>() {
     lateinit var router: Router
 
     @Inject
-    lateinit var getCharacters: GetCharacters
+    lateinit var getCharacterFlow: GetCharacterFlow
+
+    var lastScrollPosition = 0
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -32,7 +34,7 @@ class CharactersPresenter : MvpPresenter<CharactersView>() {
 
     @ExperimentalCoroutinesApi
     fun getCharactersFlowable(): Flowable<PagingData<Character>> {
-        return getCharacters.execute()
+        return getCharacterFlow.execute()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .cachedIn(presenterScope)

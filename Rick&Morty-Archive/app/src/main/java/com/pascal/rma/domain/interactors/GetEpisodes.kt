@@ -18,7 +18,6 @@ class GetEpisodes(
     fun execute(episodeIds: List<Int>): Single<List<Episode>> {
         return networkStatus.isOnlineSingle().flatMap { isOnline ->
             if (isOnline) {
-                println("TRYING TO GET EPISODES $episodeIds")
                 service.getEpisodes(episodeIds)
                     .flatMap {
                         cache.insertAll(it)
@@ -26,8 +25,7 @@ class GetEpisodes(
                         Single.fromCallable { it }
                     }
             } else {
-                cache.getEpisodes(episodeIds).also { println("CAHE DONE") }
-
+                cache.getEpisodes(episodeIds)
             }
         }.onErrorReturn { emptyList() }
     }

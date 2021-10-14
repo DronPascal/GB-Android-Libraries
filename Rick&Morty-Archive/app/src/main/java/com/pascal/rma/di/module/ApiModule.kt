@@ -40,7 +40,6 @@ interface ApiModule {
         @Provides
         @Singleton
         fun gson(): Gson = GsonBuilder()
-            //.excludeFieldsWithoutExposeAnnotation()
             .create()
 
         @Provides

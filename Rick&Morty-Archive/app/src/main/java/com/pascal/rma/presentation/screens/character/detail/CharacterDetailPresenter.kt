@@ -1,6 +1,5 @@
 package com.pascal.rma.presentation.screens.character.detail
 
-import android.util.Log
 import com.pascal.rma.domain.interactors.GetEpisodes
 import com.pascal.rma.domain.model.Character
 import com.pascal.rma.domain.model.Episode
@@ -41,13 +40,10 @@ class CharacterDetailPresenter : MvpPresenter<CharacterDetailView>() {
                 getEpisodes.execute(episodeIds)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ episodeList ->
+                    .subscribe { episodeList ->
                         episodes = episodeList
-                        println(episodeList)
                         if (episodes.isNotEmpty()) viewState.initEpisodeView()
-                    }, {
-                        Log.e("EpisodePresenter", "Ошибка получения списка", it)
-                    })
+                    }
             )
         }
     }

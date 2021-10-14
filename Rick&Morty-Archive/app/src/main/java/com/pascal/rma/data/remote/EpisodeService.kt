@@ -14,7 +14,6 @@ class EpisodeService(
 
     override fun getEpisodes(ids: List<Int>): Single<List<Episode>> {
         val idsQuery = ids.joinToString(separator = ",")
-        println("LOADING EPISODES FORM NET $idsQuery")
         return when (ids.size) {
             1 -> apiService.getEpisodeById(ids.first())
                 .flatMap {

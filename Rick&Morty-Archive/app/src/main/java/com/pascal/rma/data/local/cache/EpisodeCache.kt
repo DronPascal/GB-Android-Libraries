@@ -18,10 +18,9 @@ class EpisodeCache(
             val resultList = mutableListOf<Episode>()
             episodeIds.forEach { id ->
                 resultList.add(
-                    database.episodeDao.select(id).toEpisode().also { println(it) }
+                    database.episodeDao.select(id).toEpisode()
                 )
             }
-            println("RESULT LIST $resultList")
             resultList.toList()
         }
     }
