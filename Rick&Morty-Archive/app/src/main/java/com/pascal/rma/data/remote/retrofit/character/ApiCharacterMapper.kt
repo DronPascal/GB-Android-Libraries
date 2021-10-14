@@ -23,7 +23,7 @@ object ApiCharacterMapper {
                 originId = origin.url.unitId(),
                 location = location.name,
                 locationId = location.url.unitId(),
-                episodes = null
+                episodeIds = episode.ifEmpty { null }?.mapNotNull { it.unitId() }
             )
         }
     }
