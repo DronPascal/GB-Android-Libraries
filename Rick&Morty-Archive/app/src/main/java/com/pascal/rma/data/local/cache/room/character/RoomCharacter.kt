@@ -1,4 +1,4 @@
-package com.pascal.rma.data.cache.room.character
+package com.pascal.rma.data.local.cache.room.character
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -19,7 +19,8 @@ data class RoomCharacter(
     val origin: String,
     val originId: Int?,
     val location: String,
-    val locationId: Int?
+    val locationId: Int?,
+    val episodeIds: String?
 ) {
 
     @Entity(
@@ -35,21 +36,6 @@ data class RoomCharacter(
         @PrimaryKey val characterId: Int,
         val prevKey: Int?,
         val nextKey: Int?
-    )
-
-    @Entity(
-        tableName = "character_episodes",
-        foreignKeys = [ForeignKey(
-            entity = RoomCharacter::class,
-            parentColumns = ["id"],
-            childColumns = ["characterId"],
-            onDelete = ForeignKey.CASCADE
-        )]
-    )
-    data class Episode(
-        @PrimaryKey val characterId: Int,
-        val episodeId: Int,
-        val name: String,
     )
 
 }

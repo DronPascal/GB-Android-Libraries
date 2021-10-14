@@ -1,4 +1,4 @@
-package com.pascal.rma.data.cache.room.character
+package com.pascal.rma.data.local.cache.room.character
 
 import com.pascal.rma.data.remote.retrofit.character.model.ApiCharacter
 import com.pascal.rma.domain.model.Character
@@ -22,7 +22,8 @@ object RoomCharacterMappers {
                 origin = origin,
                 originId = originId,
                 location = location,
-                locationId = locationId
+                locationId = locationId,
+                episodeIds = episodeIds?.joinToString(separator = ",")
             )
         }
     }
@@ -41,7 +42,7 @@ object RoomCharacterMappers {
                 originId = originId,
                 location = location,
                 locationId = locationId,
-                episodes = null
+                episodeIds = episodeIds?.split(",")?.map { it.toInt() }
             )
         }
     }
@@ -59,7 +60,10 @@ object RoomCharacterMappers {
                 origin = origin.name,
                 originId = origin.url.unitId(),
                 location = location.name,
-                locationId = location.url.unitId()
+                locationId = location.url.unitId(),
+                episodeIds = episode.ifEmpty { null }
+                    ?.mapNotNull { it.unitId() }
+                    ?.joinToString(separator = ",")
             )
         }
     }

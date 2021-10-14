@@ -1,4 +1,4 @@
-package com.pascal.rma.data.cache.room.location
+package com.pascal.rma.data.local.cache.room.location
 
 import androidx.room.RoomDatabase
 

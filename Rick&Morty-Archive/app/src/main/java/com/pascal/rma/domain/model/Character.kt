@@ -19,14 +19,8 @@ data class Character(
     val originId: Int?,
     val location: String,
     val locationId: Int?,
-    val episodes: List<Episode>?
+    val episodeIds: List<Int>?
 ) : Parcelable {
-
-    @Parcelize
-    data class Episode(
-        val id: Int,
-        val name: String
-    ) : Parcelable
 
     // 🟢 Alive - Human
     fun getStatusAndSpecies(): String? {
