@@ -23,7 +23,4 @@ interface CharacterApiService {
         @Path("id") id: Int
     ): Single<ApiCharacter>
 
-    @GET
-    fun getCharacterByUrl(@Url url: String): Single<ApiCharacter>
-
 }

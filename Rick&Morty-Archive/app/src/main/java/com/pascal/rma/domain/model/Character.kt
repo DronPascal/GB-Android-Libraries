@@ -1,8 +1,12 @@
 package com.pascal.rma.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 /**
  * Created by dronpascal on 05.10.2021.
  */
+@Parcelize
 data class Character(
     val id: Int,
     val name: String,
@@ -15,15 +19,12 @@ data class Character(
     val originId: Int?,
     val location: String,
     val locationId: Int?,
-    val episodes: List<Episode>
-) {
-    data class Episode(
-        val id: Int,
-        val name: String
-    )
+    val episodeIds: List<Int>?
+) : Parcelable {
 
     // 🟢 Alive - Human
-    fun getStatusAndSpecies(): String {
+    fun getStatusAndSpecies(): String? {
+        if (status.isEmpty() && species.isEmpty()) return null
         val led = when (status) {
             "Alive" -> "🟢 "
             "Dead" -> "🔴 "

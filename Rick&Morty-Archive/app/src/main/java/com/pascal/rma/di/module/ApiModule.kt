@@ -8,8 +8,8 @@ import com.pascal.rma.data.remote.retrofit.IApiHolder
 import com.pascal.rma.data.remote.retrofit.character.CharacterApiService
 import com.pascal.rma.data.remote.retrofit.episode.EpisodeApiService
 import com.pascal.rma.data.remote.retrofit.location.LocationApiService
-import com.pascal.rma.util.AndroidNetworkStatus
-import com.pascal.rma.util.INetworkStatus
+import com.pascal.rma.data.local.network.AndroidNetworkStatus
+import com.pascal.rma.data.local.network.INetworkStatus
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -40,7 +40,6 @@ interface ApiModule {
         @Provides
         @Singleton
         fun gson(): Gson = GsonBuilder()
-            //.excludeFieldsWithoutExposeAnnotation()
             .create()
 
         @Provides

@@ -12,6 +12,8 @@ class CharacterAdapter : PagingDataAdapter<Character, CharacterViewHolder>(
     COMPARATOR
 ) {
 
+    private var itemClickListener: OnItemClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         return CharacterViewHolder.create(
             parent
@@ -19,9 +21,23 @@ class CharacterAdapter : PagingDataAdapter<Character, CharacterViewHolder>(
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        getItem(position)?.let {
-            holder.bind(it)
+
+        getItem(position)?.let { character ->
+            itemClickListener?.let { listener ->
+                holder.bind(
+                    character,
+                    listener::onItemClicked
+                )
+            }
         }
+    }
+
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
+
+    interface OnItemClickListener {
+        fun onItemClicked(item: Character)
     }
 
     companion object {

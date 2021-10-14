@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
+import com.google.android.material.snackbar.Snackbar
 import com.pascal.rma.App
 import com.pascal.rma.R
 import com.pascal.rma.databinding.FragmentCategoriesBinding
+import com.pascal.rma.presentation.activity.MainActivity
 import com.pascal.rma.presentation.navigation.BackButtonListener
+import com.pascal.rma.util.ColorUtil.getThemeColor
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -36,9 +40,24 @@ class CategoriesFragment : MvpAppCompatFragment(), CategoriesView, BackButtonLis
 
     override fun initView() {
         activity?.title = getString(R.string.app_name)
-        vb?.cdCharacters?.setOnClickListener { presenter.onNavigateToCharacters() }
-        vb?.cdLocations?.setOnClickListener { presenter.onNavigateToLocations() }
-        vb?.cdEpisodes?.setOnClickListener { presenter.onNavigateToEpisodes() }
+        (activity as MainActivity).setDisplayHomeAsUpEnabled(false)
+        vb?.run {
+            cdCharacters.setOnClickListener { presenter.onNavigateToCharacters() }
+            cdLocations.setOnClickListener { presenter.onNavigateToLocations() }
+            cdEpisodes.setOnClickListener { presenter.onNavigateToEpisodes() }
+        }
+    }
+
+    override fun showSnackbar(message: String) {
+        vb?.run {
+            @ColorInt val backgroundColor = requireContext().getThemeColor(R.attr.colorSecondary)
+            @ColorInt val textColor = requireContext().getThemeColor(R.attr.colorOnSecondary)
+            Snackbar.make(root, message, Snackbar.LENGTH_SHORT)
+                .setAction("CLOSE") { }
+                .setBackgroundTint(backgroundColor)
+                .setTextColor(textColor)
+                .show()
+        }
     }
 
     override fun backPressed(): Boolean {
@@ -51,3 +70,4 @@ class CategoriesFragment : MvpAppCompatFragment(), CategoriesView, BackButtonLis
     }
 
 }
+

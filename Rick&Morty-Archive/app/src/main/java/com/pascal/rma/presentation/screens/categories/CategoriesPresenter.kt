@@ -28,11 +28,11 @@ class CategoriesPresenter : MvpPresenter<CategoriesView>() {
     }
 
     fun onNavigateToLocations() {
-        TODO("Not yet implemented")
+        viewState.showSnackbar("The section is not yet available")
     }
 
     fun onNavigateToEpisodes() {
-        TODO("Not yet implemented")
+        viewState.showSnackbar("The section is not yet available")
     }
 
 }

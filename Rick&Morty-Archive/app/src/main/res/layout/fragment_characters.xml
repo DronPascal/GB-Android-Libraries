@@ -7,12 +7,20 @@
     android:orientation="vertical"
     tools:context=".presentation.screens.categories.CategoriesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_characters"
+    <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_character" />
+        app:srl_direction="both">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_characters"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_character" />
+
+    </com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
 </FrameLayout>
