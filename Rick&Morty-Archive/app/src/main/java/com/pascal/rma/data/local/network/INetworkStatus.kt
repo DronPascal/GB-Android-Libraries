@@ -1,4 +1,4 @@
-package com.pascal.rma.util
+package com.pascal.rma.data.local.network
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single

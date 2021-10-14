@@ -1,4 +1,4 @@
-package com.pascal.rma.util
+package com.pascal.rma.data.local.network
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -21,8 +21,7 @@ class AndroidNetworkStatus(context: Context) : INetworkStatus {
 
         val connectivityManager = context.getSystemService<ConnectivityManager>()
         val request = NetworkRequest.Builder().build()
-        connectivityManager?.registerNetworkCallback(
-            request,
+        connectivityManager?.registerNetworkCallback(request,
             object : ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
                     statusSubject.onNext(true)
@@ -32,7 +31,7 @@ class AndroidNetworkStatus(context: Context) : INetworkStatus {
                     statusSubject.onNext(false)
                 }
 
-                override fun onLosing(network: Network, maxMsToLive: Int) {
+                override fun onLost(network: Network) {
                     statusSubject.onNext(false)
                 }
             })
@@ -45,4 +44,5 @@ class AndroidNetworkStatus(context: Context) : INetworkStatus {
     override fun isOnlineSingle(): Single<Boolean> {
         return statusSubject.first(false)
     }
+
 }
