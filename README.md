@@ -1,4 +1,4 @@
-# Rick&Morty-Archive
+# 👽Rick&Morty-Archive
 Publishing a copy of this application on the Play Store will only get your account banned.
 
 ### Used REST API: https://rickandmortyapi.com/
