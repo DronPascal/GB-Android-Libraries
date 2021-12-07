@@ -8,10 +8,9 @@ import javax.inject.Inject
 /**
  * Created by dronpascal on 05.10.2021.
  */
-class CategoriesPresenter : MvpPresenter<CategoriesView>() {
-
-    @Inject
-    lateinit var router: Router
+class CategoriesPresenter @Inject constructor(
+    private val router: Router
+) : MvpPresenter<CategoriesView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

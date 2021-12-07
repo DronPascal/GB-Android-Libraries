@@ -14,6 +14,7 @@ import com.pascal.rma.presentation.navigation.BackButtonListener
 import com.pascal.rma.util.ColorUtil.getThemeColor
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
 /**
  * Created by dronpascal on 05.10.2021.
@@ -22,11 +23,8 @@ class CategoriesFragment : MvpAppCompatFragment(), CategoriesView, BackButtonLis
 
     private var vb: FragmentCategoriesBinding? = null
 
-    private val presenter by moxyPresenter {
-        CategoriesPresenter().apply {
-            App.instance.appComponent.inject(this)
-        }
-    }
+    @Inject
+    lateinit var presenter : CategoriesPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
