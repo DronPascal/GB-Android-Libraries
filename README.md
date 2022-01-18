@@ -5,7 +5,7 @@ Publishing a copy of this application on the Play Store will only get your accou
 ### [App Folder](Rick%26Morty-Archive)
 ###
 ### Architecture: 
-Clean, MVP, Use-Cases, Mappers, Dependency Inversion.
+Clean, MVP, Use-Cases, Mappers, DI.
 ### Libraries: 
 Dagger2, RxJava3, Room, Retrofit, Moxy, Cicerone, Paging3, Glide.
 ###
