@@ -15,6 +15,6 @@ https://user-images.githubusercontent.com/57148020/137371473-df5df167-5ad2-458f-
 |----------|---------|-----------|
 
 ### Выводы
- - RxJava и Paging 3 недостаточно хорошо дружат. Возможно, виноваты баги экспериментального RemoteMediator.
- - Use-case с RxJava выглядит хуже, чем с coroutines+flow
+ - RxJava и Paging 3 плохо совместимы. Возможно, виноваты баги экспериментального RemoteMediator.
+ - Use-case с RxJava выглядит и читается хуже, чем с coroutines+flow
  - C GraphQL тут было бы проще. А так пришлось изворачиваться, чтобы не оверхедить лишними Dao и мапперами. Room @Relation не помогло добиться сокращения кода.
